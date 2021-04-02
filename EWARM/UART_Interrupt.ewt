@@ -1447,6 +1447,9 @@
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32g4xx_it.c</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\Tetris.c</name>
+                </file>
             </group>
         </group>
     </group>

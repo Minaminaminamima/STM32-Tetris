@@ -19,239 +19,42 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "fonts.h"
-#include "ssd1306.h"
-#include <stdbool.h>
-#include <time.h>
-#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-int block[7][4][4][4] = {
-	{ // T모양 블럭
-		{
-			{0,0,0,0},
-			{0,1,0,0},
-			{1,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,0,0},
-			{0,1,1,0},
-			{0,1,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,0,0,0},
-			{1,1,1,0},
-			{0,1,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,0,0},
-			{1,1,0,0},
-			{0,1,0,0}
-		}
-	},
-	{    // 번개 블럭
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{1,1,0,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,0,0,0},
-			{1,1,0,0},
-			{0,1,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{1,1,0,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,0,0,0},
-			{1,1,0,0},
-			{0,1,0,0}
-		}
-	},
-	{   // 번개 블럭 반대
-		{   
-			{0,0,0,0},
-			{1,1,0,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,0,0},
-			{1,1,0,0},
-			{1,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,1,0,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,0,0},
-			{1,1,0,0},
-			{1,0,0,0}
-		}
-	},
-	{   // 1자형 블럭
-		{
-			{0,1,0,0},
-			{0,1,0,0},
-			{0,1,0,0},
-			{0,1,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,0,0,0},
-			{1,1,1,1},
-			{0,0,0,0}
-		},
-		{
-			{0,1,0,0},
-			{0,1,0,0},
-			{0,1,0,0},
-			{0,1,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,0,0,0},
-			{1,1,1,1},
-			{0,0,0,0}
-		}
-	},
-	{   // L자형 블럭
-		{
-			{0,0,0,0},
-			{1,0,0,0},
-			{1,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,1,0,0},
-			{1,0,0,0},
-			{1,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,1,1,0},
-			{0,0,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,1,0,0},
-			{0,1,0,0},
-			{1,1,0,0},
-			{0,0,0,0}
-		}
-	},
-	{   // L자형 블럭 반대
-		{
-			{0,0,0,0},
-			{0,0,1,0},
-			{1,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{1,0,0,0},
-			{1,0,0,0},
-			{1,1,0,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,1,1,0},
-			{1,0,0,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{1,1,0,0},
-			{0,1,0,0},
-			{0,1,0,0}
-		}
-	},
-	{   // 네모 블럭
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		},
-		{
-			{0,0,0,0},
-			{0,1,1,0},
-			{0,1,1,0},
-			{0,0,0,0}
-		}
-	}
-};
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include "ssd1306.h"
+#include "fonts.h"
+#include "Tetris.h"
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-int map[15][7]={0,};      
-int blockForm;
-int blockRotation=0;
 
-volatile int count=0;
-int x_pos[16] = {1, 9, 17, 25, 33, 41, 49, 57, 65, 73, 81, 89, 97, 105, 113, 121}; 
-int y_pos[7] = {4, 12, 20, 28, 36, 44, 52};
 
-int x_nowpos=14;
-int y_nowpos=2;
+enum states {
+  initPrint,
+  playGame,
+  endPrint
+};
 
-int x_target=0;
-int y_target=0; 
+char KeyState='n';
+extern uint32_t currentTick;
+volatile int flag=1; // 게임 시작 
 
-int score=0;
-int cnt_target=0;
-
-volatile int flag=1;
-
-char rx_buff; 
+// UART 통신 위한 변수
+uint8_t rx_buff; 
 char tx_buff;
+char tmp;
 
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-void StartScreen();
-void DrawMap() ;
-void DrawBlock();
-void CreateRandomForm();
-void DropBlock();
-bool CheckCrash(int x, int y); 
-void BlockToGround();
-void RemoveLine();
-void Game_init();
-bool Gameover(); 
-void EndScreen();
 
 /* USER CODE END PD */
 
@@ -262,17 +65,24 @@ void EndScreen();
 
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
+DMA_HandleTypeDef hdma_i2c1_tx;
 
 UART_HandleTypeDef hlpuart1;
+DMA_HandleTypeDef hdma_lpuart1_rx;
+DMA_HandleTypeDef hdma_lpuart1_tx;
 
 /* USER CODE BEGIN PV */
-char rx_buff; 
-char tx_buff;
+
+extern int beforePosition_X;
+extern int beforePosition_Y;
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
@@ -313,45 +123,63 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_LPUART1_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT (&hlpuart1, &rx_buff, 1);
-  uint8_t str[] = "uploade check\n\r"; 
-  HAL_UART_Transmit(&hlpuart1, (uint8_t*)str, 16, 1000);
+  
+  HAL_UART_Receive_DMA (&hlpuart1, &rx_buff, 1); // UART Receive 설정 
+  uint8_t str[] = "UART uploade check\n\r"; 
+  HAL_UART_Transmit(&hlpuart1, (uint8_t*)str, sizeof(str), 100); //  UART 업로드 확인 
   
   srand(time(NULL)); // 난수발생 
   
   SSD1306_Init();
-  SSD1306_Fill(0);
+  SSD1306_Fill(SSD1306_COLOR_BLACK);
 
-   
-Restart :
-  StartScreen();
- flag=1;
-//  Game_init();
-  while(flag){;}
-  HAL_Delay(10);
-  CreateRandomForm();
+  
+  enum states state = initPrint;
   
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1){
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-        DrawMap();
-    DrawBlock();
-    DropBlock();
-    BlockToGround();
-    RemoveLine();
-    if(Gameover()==true) {
-      EndScreen();
-      goto Restart;}
-    SSD1306_UpdateScreen();
+    
+    switch(state){
+      
+    case initPrint :
+        PrintScreen(1); // 초기 시작화면
+        if (flag==0){
+           currentTick = HAL_GetTick();
+           CreateRandomForm(); 
+           state = playGame;
+        }
+        break;
+        
+    case playGame :
+          DrawMap(); // Map[15][7] 현재상태 디스플레이 표시 함수
+          keyProcess();
+          DrawBlock(); // 현재 컨트롤하는 블럭  디스플레이 표시 함수
+          DropBlock(); // 현재 컨트롤하는 블록 떨어트리는 함수
+          BlockToGround(); // 바닥과 닿았는지 판단하여 Map에 표시하는 함수
+          RemoveLine(); // 채워진 줄이 있는지 판단하는 함수
+          SSD1306_UpdateScreen(); // 디스플레이 상태 업데이트 함수*/
+          if(Gameover()==true) 
+            state = endPrint;
+          break;
+ 
+    case endPrint :
+        PrintScreen(0);
+        HAL_Delay(100);
+        flag=1;
+        state = initPrint; 
+        break;
+        
+    }
   }
   /* USER CODE END 3 */
 }
@@ -426,7 +254,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x30A0A7FB;
+  hi2c1.Init.Timing = 0x60605FB0;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -504,6 +332,29 @@ static void MX_LPUART1_UART_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMAMUX1_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* DMA1_Channel2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel2_IRQn);
+  /* DMA1_Channel3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -545,222 +396,21 @@ void USART1_IRQHandler(void){
   HAL_UART_IRQHandler(&hlpuart1);
 }
 
+// UART receive Callback 함수 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
   if(huart->Instance == LPUART1){
-    tx_buff=rx_buff;
-    HAL_UART_Transmit(&hlpuart1, &tx_buff, 1, 10);
-    if (tx_buff=='q') flag=0;
-    if (tx_buff=='d') {
-      if (CheckCrash(x_nowpos , y_nowpos+1) == false) y_nowpos++; }
-    if (tx_buff=='a') {
-      if (CheckCrash(x_nowpos , y_nowpos-1) == false) y_nowpos--; }
-    if (tx_buff=='w') {
-      if (y_nowpos<4) blockRotation=(blockRotation+1)%4;
-      else {
-         for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			if (block[blockForm][(blockRotation+1)%4][i][j] == 1) {
-                          if (y_nowpos+j>8) continue;
-                          else blockRotation=(blockRotation+1)%4;
-			}
-		}}}}
-    HAL_UART_Receive_IT(&hlpuart1, &rx_buff, 1);}
-}
-
-
-void CreateRandomForm() {
-	blockForm = rand() % 7; // test 가로 3 
-}
-
-
-void StartScreen(){
-  
-    SSD1306_Fill(SSD1306_COLOR_BLACK);
+    if (tx_buff=='q') {flag=0; 
+    }// q 입력시 flag=0전환 --> 게임시작 
+    tx_buff=  (char) rx_buff;
+    KeyState= (char) rx_buff;
+    HAL_UART_Transmit_DMA(&hlpuart1, &rx_buff, sizeof(rx_buff));
     
-  SSD1306_GotoXY(0, 100);
-  char sentence[7]= "Tetris";
-    for (int i=0; i<sizeof(sentence)-1; i++){
-      SSD1306_Screen(*(sentence+i), &Font_11x18, 1);
-    } 
-    
-  SSD1306_GotoXY(0, 70);
-   char sentence_[]= "Press";
-       for (int i=0; i<sizeof(sentence_)-1; i++){
-      SSD1306_Screen(*(sentence_+i), &Font_7x10, 1);
-    } 
-   
-    SSD1306_GotoXY(0, 55);
-   char sentence__[]= "the swch";
-       for (int i=0; i<sizeof(sentence__)-1; i++){
-      SSD1306_Screen(*(sentence__+i), &Font_7x10, 1);
-    } 
-   
-    SSD1306_GotoXY(0, 40);
-   char sentence___[]= "to start";
-       for (int i=0; i<sizeof(sentence___)-1; i++){
-      SSD1306_Screen(*(sentence___+i), &Font_7x10, 1);
-    } 
-    
-    SSD1306_UpdateScreen();     
+    // UART Receive 다시 설정 
+    HAL_UART_Receive_DMA(&hlpuart1, &rx_buff, 1);}
 }
 
 
 
-
-void DrawMap() {
-  
-    SSD1306_Fill(SSD1306_COLOR_BLACK);
-    
-    SSD1306_GotoXY(37, 126);
-    int ones = score%10;
-    int tens = (score/10)%10;
-    int thou = score/100;
-    
-    SSD1306_Screen(thou+'0', &Font_7x10, 1);
-    SSD1306_Screen(tens+'0', &Font_7x10, 1);
-    SSD1306_Screen(ones+'0', &Font_7x10, 1);
-  
-    SSD1306_DrawLine(0, 61, 128, 61, 1);
-    SSD1306_DrawLine(0, 3, 128, 3, 1); // 좌측 x 
-    SSD1306_DrawLine(0, 3, 0, 61, 1); // 맨 끝 짧은거  
-    // 떨어진 블록에 대해 
-	for (int i = 0; i < 15; i++) {
-		for (int j = 0; j < 7; j++) {
-			if (map[i][j] == 1) {
-                          SSD1306_GotoXY(x_pos[i],y_pos[j]);    
-                          SSD1306_Putc (0, &Font_8x8, 1); 
-			}
-		}
-	}
-}
-
-void DrawBlock() {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			if (block[blockForm][blockRotation][i][j] == 1) {
-                          SSD1306_GotoXY(x_pos[x_nowpos-i],y_pos[y_nowpos+j]);    
-                          SSD1306_Putc (0, &Font_8x8, 1); 
-			}
-		}
-	}
-}
-
-void DropBlock() {
-	count++;
-	if (count==4) {
-		 x_nowpos--;  
-                count=0;
-	}
-}
-
-
-bool CheckCrash(int x, int y) {
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			if (block[blockForm][blockRotation][i][j] == 1) {
-                              if(x-i<0 || y+j<0 || y+j>6  ) // **
-                                     return true;
-                              
-                              int t =map[x-i][y+j];
-				if (t==1)   
-					return true;
-
-			}
-		}
-	}
-	return false;
-}
-
-void BlockToGround() {
-	if (CheckCrash(x_nowpos-1, y_nowpos) == true) {
-			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
-					if (block[blockForm][blockRotation][i][j] == 1) {
-						map[x_nowpos-i][y_nowpos+j]=1;
-					}
-				}
-			}
-                        x_nowpos=14;
-                        y_nowpos=2;
-                        blockRotation=0;
-                        CreateRandomForm();
-	}
-}
- 
-
-void RemoveLine() {
-  int combo=1;
-	for (int i = 14; i >= 0; i--) { 
-		int cnt = 0;
-		for (int j = 0; j < 7; j++) { // 
-			if (map[i][j] == 1) 
-                          cnt++;}
-                if(cnt==7){
-                  memset(map[i], 0, sizeof(map[i]));
-                  for (int k=i; k<=13; k++){
-                  memcpy(map[k], map[k+1], sizeof(map[k]));
-                  memset(map[k+1], 0, sizeof(map[k+1]));
-/*
-		//for (int k = 14; k >= i; k--) {
-			for (int x = 0; x < 7; x++) { 
-                        map[i][x] =0; // map[k+1][x]; 
-                                }
-			}*/
-		}
-                score+=10*(combo++);
-	}
-}
-}
-
-bool Gameover(){
-  cnt_target++;
-  if (cnt_target==7){
-    if(y_target==y_nowpos && x_target==x_nowpos) return true;
-    else {
-        y_target=y_nowpos;
-        x_target=x_nowpos;
-       cnt_target=0;
-       return false;
-    }
-  }
-  else return false;
-}
-
-
-
-void Game_init(){
-
-     blockRotation=0;
-     count=0;
-     x_nowpos=14;
-     y_nowpos=2; 
-     score=0;
-      for ( int i = 0 ;  i < 16; i++ )
-      memset( map[i], 0, sizeof(map[i]));
-
-}
-void EndScreen(){
-  HAL_Delay(1500);
-  SSD1306_Fill(SSD1306_COLOR_BLACK);
-    
-  SSD1306_GotoXY(0, 70);
-  char print_[]= "score is";
-  for (int i=0; i<sizeof(print_)-1; i++){
-  SSD1306_Screen(*(print_+i), &Font_7x10, 1);} 
-  
-  SSD1306_GotoXY(0, 55);
-  int ones = score%10;
-  int tens = (score/10)%10;
-  int thou = score/100;
-    
-  SSD1306_Screen(thou+'0', &Font_7x10, 1);
-  SSD1306_Screen(tens+'0', &Font_7x10, 1);
-  SSD1306_Screen(ones+'0', &Font_7x10, 1);
-    
-  SSD1306_UpdateScreen();    
-  HAL_Delay(3000);
-    
-}
 
 /* USER CODE END 4 */
 

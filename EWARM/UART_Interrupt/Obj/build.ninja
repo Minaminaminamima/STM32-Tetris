@@ -25,6 +25,7 @@ build main.pbi : index main.xcl
 build ssd1306.pbi : index ssd1306.xcl
 build stm32g4xx_hal_msp.pbi : index stm32g4xx_hal_msp.xcl
 build stm32g4xx_it.pbi : index stm32g4xx_it.xcl
+build Tetris.pbi : index Tetris.xcl
 build system_stm32g4xx.pbi : index system_stm32g4xx.xcl
 build stm32g4xx_hal.pbi : index stm32g4xx_hal.xcl
 build stm32g4xx_hal_cortex.pbi : index stm32g4xx_hal_cortex.xcl
@@ -46,11 +47,12 @@ build stm32g4xx_hal_tim_ex.pbi : index stm32g4xx_hal_tim_ex.xcl
 build stm32g4xx_hal_uart.pbi : index stm32g4xx_hal_uart.xcl
 build stm32g4xx_hal_uart_ex.pbi : index stm32g4xx_hal_uart_ex.xcl
 build UART_Interrupt_part0.pbi : link fonts.pbi main.pbi ssd1306.pbi stm32g4xx_hal_msp.pbi stm32g4xx_it.pbi
-build UART_Interrupt_part1.pbi : link system_stm32g4xx.pbi stm32g4xx_hal.pbi stm32g4xx_hal_cortex.pbi stm32g4xx_hal_dma.pbi stm32g4xx_hal_dma_ex.pbi
-build UART_Interrupt_part2.pbi : link stm32g4xx_hal_exti.pbi stm32g4xx_hal_flash.pbi stm32g4xx_hal_flash_ex.pbi stm32g4xx_hal_flash_ramfunc.pbi stm32g4xx_hal_gpio.pbi
-build UART_Interrupt_part3.pbi : link stm32g4xx_hal_i2c.pbi stm32g4xx_hal_i2c_ex.pbi stm32g4xx_hal_pwr.pbi stm32g4xx_hal_pwr_ex.pbi stm32g4xx_hal_rcc.pbi
-build UART_Interrupt_part4.pbi : link stm32g4xx_hal_rcc_ex.pbi stm32g4xx_hal_tim.pbi stm32g4xx_hal_tim_ex.pbi stm32g4xx_hal_uart.pbi stm32g4xx_hal_uart_ex.pbi
-build UART_Interrupt.pbd : link UART_Interrupt_part0.pbi UART_Interrupt_part1.pbi UART_Interrupt_part2.pbi UART_Interrupt_part3.pbi UART_Interrupt_part4.pbi
+build UART_Interrupt_part1.pbi : link Tetris.pbi system_stm32g4xx.pbi stm32g4xx_hal.pbi stm32g4xx_hal_cortex.pbi stm32g4xx_hal_dma.pbi
+build UART_Interrupt_part2.pbi : link stm32g4xx_hal_dma_ex.pbi stm32g4xx_hal_exti.pbi stm32g4xx_hal_flash.pbi stm32g4xx_hal_flash_ex.pbi stm32g4xx_hal_flash_ramfunc.pbi
+build UART_Interrupt_part3.pbi : link stm32g4xx_hal_gpio.pbi stm32g4xx_hal_i2c.pbi stm32g4xx_hal_i2c_ex.pbi stm32g4xx_hal_pwr.pbi stm32g4xx_hal_pwr_ex.pbi
+build UART_Interrupt_part4.pbi : link stm32g4xx_hal_rcc.pbi stm32g4xx_hal_rcc_ex.pbi stm32g4xx_hal_tim.pbi stm32g4xx_hal_tim_ex.pbi stm32g4xx_hal_uart.pbi
+build UART_Interrupt_part5.pbi : link stm32g4xx_hal_uart_ex.pbi
+build UART_Interrupt.pbd : link UART_Interrupt_part0.pbi UART_Interrupt_part1.pbi UART_Interrupt_part2.pbi UART_Interrupt_part3.pbi UART_Interrupt_part4.pbi UART_Interrupt_part5.pbi
 build UART_Interrupt.pbw : browsedata UART_Interrupt.pbd
 
 

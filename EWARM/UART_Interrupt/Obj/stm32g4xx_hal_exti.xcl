@@ -1,39 +1,39 @@
-"C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\STM32G4xx_HAL_Driver\Src\stm32g4xx_hal_exti.c"
+"C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\STM32G4xx_HAL_Driver\Src\stm32g4xx_hal_exti.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -funsigned-char
 -MD
 -MF
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM\UART_Interrupt\Obj\stm32g4xx_hal_exti.pbi.dep
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM\UART_Interrupt\Obj\stm32g4xx_hal_exti.pbi.dep
 -o
 stm32g4xx_hal_exti.pbi
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\STM32G4xx_HAL_Driver\Src
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\STM32G4xx_HAL_Driver\Src
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM/../Core/Inc\
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM/../Core/Inc\
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM/../Drivers/STM32G4xx_HAL_Driver/Inc\
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM/../Drivers/STM32G4xx_HAL_Driver/Inc\
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM/../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy\
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM/../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy\
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM/../Drivers/CMSIS/Device/ST/STM32G4xx/Include\
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM/../Drivers/CMSIS/Device/ST/STM32G4xx/Include\
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\EWARM/../Drivers/CMSIS/Include\
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\EWARM/../Drivers/CMSIS/Include\
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\inc\c
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Core\Inc
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Core\Inc
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\STM32G4xx_HAL_Driver\Inc
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\STM32G4xx_HAL_Driver\Inc
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\STM32G4xx_HAL_Driver\Inc\Legacy
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\STM32G4xx_HAL_Driver\Inc\Legacy
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\CMSIS\Device\ST\STM32G4xx\Include
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\CMSIS\Device\ST\STM32G4xx\Include
 -I
-C:\Users\YJ병점\Downloads\STM32_UART_Interrupt-master\Drivers\CMSIS\Include
+C:\Users\YJ병점\Documents\카카오톡 받은 파일\지금수정중인파일\Drivers\CMSIS\Include
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0

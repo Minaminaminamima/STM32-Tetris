@@ -28,9 +28,13 @@ extern I2C_HandleTypeDef hi2c1;
 /* Absolute value */
 #define ABS(x)   ((x) > 0 ? (x) : -(x))
 
+
+
+
 static void SSD1306_WRITECOMMAND(uint8_t command)
-{
-	HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1,10);
+{ 
+ while(HAL_I2C_GetState(&hi2c1) != HAL_I2C_STATE_READY);
+	HAL_I2C_Mem_Write_DMA(&hi2c1, SSD1306_I2C_ADDR, 0x00, 1, &command, 1);
 }
 
 
@@ -227,7 +231,12 @@ void SSD1306_UpdateScreen(void) {
 		SSD1306_WRITECOMMAND(0x00);
 		SSD1306_WRITECOMMAND(0x10);
 		
-HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x40,1,&SSD1306_Buffer[SSD1306_WIDTH * m],SSD1306_WIDTH,100);
+//HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x40,1,&SSD1306_Buffer[SSD1306_WIDTH * m],SSD1306_WIDTH,100);
+        
+       while(HAL_I2C_GetState(&hi2c1) != HAL_I2C_STATE_READY);
+	HAL_I2C_Mem_Write_DMA(&hi2c1, SSD1306_I2C_ADDR, 0x40, 1, &SSD1306_Buffer[SSD1306_WIDTH * m],SSD1306_WIDTH);
+        
+
 	}
 }
 
@@ -611,7 +620,7 @@ void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t
 
 void SSD1306_Clear (void)
 {
-	SSD1306_Fill (0);
+	SSD1306_Fill (SSD1306_COLOR_BLACK);
     SSD1306_UpdateScreen();
 }
 void SSD1306_ON(void) {
